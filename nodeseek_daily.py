@@ -57,16 +57,16 @@ def click_sign_icon(driver):
         
         # 点击"试试手气"按钮
         try:
-            click_button:None
+            click_button = None
             
             if ns_random:
                 click_button = WebDriverWait(driver, 5).until(
-                EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), '试试手气')]"))
-            )
+                    EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), '试试手气')]"))
+                )
             else:
                 click_button = WebDriverWait(driver, 5).until(
-                EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), '鸡腿 x 5')]"))
-            )
+                    EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), '鸡腿 x 5')]"))
+                )
             
             click_button.click()
             print("完成试试手气点击")
