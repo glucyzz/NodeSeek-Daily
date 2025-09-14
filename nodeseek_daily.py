@@ -259,7 +259,7 @@ def click_chicken_leg(driver):
         
         # 等待确认对话框出现
         WebDriverWait(driver, 5).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR， '.msc-confirm'))
+            EC.presence_of_element_located((By.CSS_SELECTOR，'.msc-confirm'))
         )
         
         # 检查是否是7天前的帖子
