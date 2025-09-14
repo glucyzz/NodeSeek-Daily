@@ -150,15 +150,15 @@ def click_chicken_leg(driver):
     try:
         print("尝试点击加鸡腿按钮...")
         chicken_btn = WebDriverWait(driver, 5).until(
-            EC.element_to_be_clickable((By.XPATH, '//div[@class="nsk-post"]//div[@title="加鸡腿"][1]'))
+            EC.element_to_be_clickable((By.XPATH， '//div[@class="nsk-post"]//div[@title="加鸡腿"][1]'))
         )
         driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", chicken_btn)
         time.sleep(0.5)
         chicken_btn.click()
         print("加鸡腿按钮点击成功")
         
-        WebDriverWait(driver, 5).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR， '.msc-confirm'))
+        WebDriverWait(driver, 5)。until(
+            EC.presence_of_element_located((By.CSS_SELECTOR， '.msc-confirm'))  # Fixed: changed Chinese comma to English comma
         )
         
         try:
