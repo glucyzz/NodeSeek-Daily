@@ -20,7 +20,6 @@ ns_random = os.environ.get("NS_RANDOM","false")
 cookie = os.environ.get("NS_COOKIE") or os.environ.get("COOKIE")
 # 通过环境变量控制是否使用无头模式，默认为 True（无头模式）
 headless = os.environ.get("HEADLESS", "true").lower() == "true"
-
 randomInputStr = ["bd :ac01: ","帮顶 :ac01: ","帮你顶一下（顺便让我水一水） :ac01: ","看一看顺便加个经验 :ac01: "]
 
 def click_sign_icon(driver):
@@ -44,8 +43,6 @@ def click_sign_icon(driver):
         
         # 尝试点击
         try:
-            
-            
             sign_icon.click()
             print("签到图标点击成功")
         except Exception as click_error:
@@ -157,6 +154,8 @@ def setup_driver_and_cookies():
         print(traceback.format_exc())
         return None
 
+# ========== 注释掉随机评论功能（保留加鸡腿功能） ==========
+"""
 def nodeseek_comment(driver):
     try:
         print("正在访问交易区...")
@@ -204,7 +203,6 @@ def nodeseek_comment(driver):
                 editor.click()
                 time.sleep(0.5)
                 input_text = random.choice(randomInputStr)
-
                 # 模拟输入
                 actions = ActionChains(driver)
                 # 随机输入 randomInputStr
@@ -242,8 +240,13 @@ def nodeseek_comment(driver):
         print(f"NodeSeek评论出错: {str(e)}")
         print("详细错误信息:")
         print(traceback.format_exc())
+"""
+# ========== 评论功能注释结束 ==========
 
 def click_chicken_leg(driver):
+    """
+    加鸡腿功能 - 保持启用
+    """
     try:
         print("尝试点击加鸡腿按钮...")
         chicken_btn = WebDriverWait(driver, 5).until(
@@ -256,7 +259,7 @@ def click_chicken_leg(driver):
         
         # 等待确认对话框出现
         WebDriverWait(driver, 5).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, '.msc-confirm'))
+            EC.presence_of_element_located((By.CSS_SELECTOR， '.msc-confirm'))
         )
         
         # 检查是否是7天前的帖子
@@ -264,7 +267,7 @@ def click_chicken_leg(driver):
             error_title = driver.find_element(By.XPATH, "//h3[contains(text(), '该评论创建于7天前')]")
             if error_title:
                 print("该帖子超过7天，无法加鸡腿")
-                ok_btn = driver.find_element(By.CSS_SELECTOR, '.msc-confirm .msc-ok')
+                ok_btn = driver.find_element(By.CSS_SELECTOR， '.msc-confirm .msc-ok')
                 ok_btn.click()
                 return False
         except:
@@ -287,14 +290,18 @@ def click_chicken_leg(driver):
         return False
 
 if __name__ == "__main__":
-    print("开始执行NodeSeek评论脚本...")
+    print("开始执行NodeSeek脚本...")
     driver = setup_driver_and_cookies()
     if not driver:
         print("浏览器初始化失败")
         exit(1)
-    nodeseek_comment(driver)
+    
+    # 注释掉随机评论功能
+    # nodeseek_comment(driver)
+    print("随机评论功能已被禁用，只执行签到")
+    
+    # 保留签到和加鸡腿功能
     click_sign_icon(driver)
     print("脚本执行完成")
     # while True:
     #     time.sleep(1)
-
